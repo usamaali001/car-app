@@ -2,7 +2,11 @@ import Image from "next/image";
 import Pic1 from "../../public/images/wallpaperflare.com_wallpaper.jpg";
 import Pic2 from "../../public/images/car-png-39061.png";
 
-export default function HeroSection({ theme }: any) {
+type HeroSectionProps = {
+  theme: "light" | "dark";
+};
+
+export default function HeroSection({ theme }: HeroSectionProps) {
   return (
     <div className="dark:bg-black dark:text-white duration-300 relative -z-20">
       <div className="container min-h-[620px] flex">

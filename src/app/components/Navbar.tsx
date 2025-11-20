@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BiSolidMoon, BiSolidSun } from "react-icons/bi";
 import { IoCarSport } from "react-icons/io5";
 import ResponsiveMenu from "./ResponsiveMenu";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
 export const NavLinks = [
   {
@@ -28,7 +28,14 @@ export const NavLinks = [
   },
 ];
 
-export default function Navbar({ theme, setTheme }: any) {
+type Theme = "light" | "dark";
+
+interface NavbarProps {
+  theme: Theme;
+  setTheme: Dispatch<SetStateAction<Theme>>;
+}
+
+export default function Navbar({ theme, setTheme }: NavbarProps) {
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => {
     setShowMenu(!showMenu);

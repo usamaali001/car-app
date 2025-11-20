@@ -13,17 +13,30 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 export default function Home() {
   // Dark mode features
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
-  );
-  const element = document.documentElement;
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  // Read persisted preference on the client
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const savedTheme = window.localStorage.getItem("theme");
+    if (savedTheme === "dark" || savedTheme === "light") {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof document === "undefined" || typeof window === "undefined") {
+      return;
+    }
+    const element = document.documentElement;
     if (theme === "dark") {
       element.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      window.localStorage.setItem("theme", "dark");
     } else {
       element.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      window.localStorage.setItem("theme", "light");
     }
   }, [theme]);
   // AOS Initialization

@@ -44,6 +44,7 @@ export default function CarList() {
             {CarLists.map((data) => {
               return (
                 <div
+                  key={data.name}
                   data-aos="fade-up"
                   data-aos-delay={data.aosDelay}
                   className="space-y-3 border-2 border-gray-300 hover:border-primary p-3 rounded-xl relative group"

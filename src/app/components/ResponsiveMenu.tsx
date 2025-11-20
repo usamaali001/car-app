@@ -1,7 +1,11 @@
 import { FaUserCircle } from "react-icons/fa";
 import { NavLinks } from "./Navbar";
 
-export default function ResponsiveMenu({ showMenu }: any) {
+interface ResponsiveMenuProps {
+  showMenu: boolean;
+}
+
+export default function ResponsiveMenu({ showMenu }: ResponsiveMenuProps) {
   return (
     <div
       className={`${
